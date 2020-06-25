@@ -1,0 +1,57 @@
+  
+<!DOCTYPE html>
+<html >
+<head>
+
+
+
+  <meta charset="UTF-8">
+
+  <title>POWER</title>
+  <link rel="stylesheet" type="text/css" href="../static/my.css">
+ 
+  
+</head>
+
+<body>
+	<center>
+ <div class="login">
+	<h1>Predictor</h1>
+	<div class="formade">
+    <form action="{{ url_for('predict')}}"method="POST">
+    	<input type="text" name="Date" placeholder="yyyy-mm-dd" required="required" /><br>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+    <br>
+    <h2>Please press the button if you want see the graph </h2>
+    <button type="submit"  onClick="refreshPage()">show me graph</button>
+    <script>
+        function refreshPage(){
+            window.location.reload();
+        } 
+        </script>
+
+   <br>
+   <br>
+   <div >
+                    {{prediction_text}}
+                    <br>
+                    <br>
+                    
+       <br>
+       <img src="{{image}}" width="800" height="400"></div>
+   </div>
+
+   <br>
+   <br>
+
+
+</div>
+
+ </div>
+</center>
+
+</body>
+</html>
