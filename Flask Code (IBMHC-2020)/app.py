@@ -5,8 +5,9 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 
-
+GRAPH_FOLDER= os.path.join('static')
 app = Flask(__name__)
+app.config['upload']=GRAPH_FOLDER
 
 x=0
 y=0
@@ -27,6 +28,10 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
+    '''
+    For rendering results on HTML GUI
+    '''
+    def predict():
     '''
     For rendering results on HTML GUI
     '''
@@ -82,12 +87,15 @@ def predict():
     axes.set_xlabel('Date/Time')
     axes.set_title('Time Series Analysis')
     plt.savefig("static/temp.jpg")
-    full_filename = "static/temp.jpg"
-    
-    return render_template('index.html', prediction_text=prediction, image = full_filename)
     
 
+    return render_template('index.html', prediction_text=prediction)
 
+@app.route('/display',  methods=["POST"])
+def display():
+    full_filename= os.path.join(app.config['upload'], 'temp.png')
+    return render_template('graph.html', graph_image=full_filename )
+    
 
 
 
